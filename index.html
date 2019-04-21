@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title>Game of Thrones France</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" href="ressources/30801-2-game-of-thrones-transparent-background.png">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width:device-width, initial-scale=1">
+    </head>
+    <body ng-app="myApp">
+        <header>
+            <h1>Game Of Thrones</h1>
+
+            <img class="author" src="ressources/George-R.R.-Martin-l-auteur-de-Game-of-Thrones-arrive-sur-Netflix.jpg" alt="George-R.R.-Martin-l-auteur-de-Game-of-Thrones-arrive-sur-Netflix.jpg">
+            <p><cite>"Votre navigation est pour nous une priorité !"<br><strong>-Administrateur</strong></cite></p>
+        </header>
+
+        <div id="wallpaper">
+             
+        </div>
+
+        <section>
+                 
+        </section>
+ 
+        <section class="menu_navigation">
+            <nav>
+                <img id="icon_return" onclick="stop_search_translation()" src="ressources/fleche.png" alt="fleche.png">
+                        
+                <div id="search">
+                    <img class="icon_search" onclick="search_translation()" src="ressources/search.png" alt="search_icon.png"></im>
+                    <input ng-model="query" id="search_input" class="input_search" type="text" placeholder="Recherche">
+                </div>
+
+                <ul>
+                    <select ng-model="select_season" class="select_case" value="1">
+                        <option selected="selected" value="1">Saison 1</option>
+                        <option value="2">Saison 2</option>
+                        <option value="3">Saison 3</option>
+                        <option value="4">Saison 4</option>
+                        <option value="5">Saison 5</option>
+                        <option value="6">Saison 6</option>
+                        <option value="7">Saison 7</option>
+                        <option value="8">Saison 8</option>
+                        <option value="9">Saison 9</option>
+                        <option value="10">Saison 10</option>
+                    </select>
+                </ul>
+            </nav>
+        </section>
+ 
+        <div ng-controller="episodeCtrl" class="container">
+            <div ng-repeat="episode in episodes | filter:{title:query} | filter:{season:select_season}" class="item">{{episode.title}}</div>
+        </div>
+
+        <footer>
+            
+        </footer>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+        <script src="script.js"></script>
+        <script>
+            var paths = 
+            [
+                "/media/season1/json/1.json", "/media/season1/json/2.json", "/media/season1/json/3.json", "/media/season1/json/4.json",
+                "/media/season1/json/5.json", "/media/season1/json/6.json", "/media/season1/json/7.json", "/media/season1/json/8.json",
+                "/media/season1/json/9.json", "/media/season1/json/10.json"
+            ];
+
+ 
+            var app = angular.module('myApp', []);
+
+            app.controller("episodeCtrl", function($scope)
+            {
+                $scope.episodes = [
+                {
+                    "season": 1,
+                    "episode" : 1,
+                    "title": "L'hiver vient",
+                    "synopsis": "Sur le continent de Westeros, le roi Robert Baratheon règne sur le royaume des Sept Couronnes depuis qu'il a mené à la victoire la rébellion contre le roi fou, Ærys II Targaryen, dix-sept ans plus tôt. Son guide et principal conseiller, Jon Arryn, venant de décéder, il part dans le nord du royaume demander à son vieil ami Eddard Stark, seigneur suzerain du Nord et de la maison Stark, de remplacer leur regretté mentor au poste de « main du roi ». Eddard, peu désireux de quitter ses terres, accepte à contre-cœur de partir à la cour avec ses deux filles Arya et Sansa, alors que Jon Snow, son fils bâtard, se prépare à intégrer la fameuse Garde de Nuit. Cette confrérie est chargée depuis les Premiers Hommes de protéger le royaume de toute créature pouvant provenir d'au-delà du Mur protecteur. Mais elle n'est plus que l'ombre d'elle-même avec le peu de moyens dont elle dispose, alors que des rumeurs inquiétantes se multiplient sur le retour possible des Marcheurs blancs, créatures surnaturelles capables de réanimer les morts. Juste avant le départ pour le Sud, Bran Stark découvre, en escaladant une tour de Winterfell, la reine Cersei et son frère jumeau en pleins ébats. Pour éviter que leur relation adultère incestueuse ne soit découverte, ce dernier pousse le garçon dans le vide. Dans le même temps, sur le continent Est, Viserys Targaryen, héritier « légitime » en exil des Sept Couronnes et fils d'Ærys, projette de marier sa jeune sœur Daenerys au khal Drogo, le chef d'une puissante horde de cavaliers nomades, afin de s'en faire des alliés en vue de la reconquête du royaume. Mais Viserys est presque aussi instable mentalement que son père."
+                },
+                
+                {
+                    "season": 1,
+                    "episode" : 2,
+                    "title" : "La Route royale",
+                    "synopsis": "Sur le continent de Westeros, le roi Robert Baratheon règne sur le royaume des Sept Couronnes depuis qu'il a mené à la victoire la rébellion contre le roi fou, Ærys II Targaryen, dix-sept ans plus tôt. Son guide et principal conseiller, Jon Arryn, venant de décéder, il part dans le nord du royaume demander à son vieil ami Eddard Stark, seigneur suzerain du Nord et de la maison Stark, de remplacer leur regretté mentor au poste de « main du roi ». Eddard, peu désireux de quitter ses terres, accepte à contre-cœur de partir à la cour avec ses deux filles Arya et Sansa, alors que Jon Snow, son fils bâtard, se prépare à intégrer la fameuse Garde de Nuit. Cette confrérie est chargée depuis les Premiers Hommes de protéger le royaume de toute créature pouvant provenir d'au-delà du Mur protecteur. Mais elle n'est plus que l'ombre d'elle-même avec le peu de moyens dont elle dispose, alors que des rumeurs inquiétantes se multiplient sur le retour possible des Marcheurs blancs, créatures surnaturelles capables de réanimer les morts. Juste avant le départ pour le Sud, Bran Stark découvre, en escaladant une tour de Winterfell, la reine Cersei et son frère jumeau en pleins ébats. Pour éviter que leur relation adultère incestueuse ne soit découverte, ce dernier pousse le garçon dans le vide. Dans le même temps, sur le continent Est, Viserys Targaryen, héritier « légitime » en exil des Sept Couronnes et fils d'Ærys, projette de marier sa jeune sœur Daenerys au khal Drogo, le chef d'une puissante horde de cavaliers nomades, afin de s'en faire des alliés en vue de la reconquête du royaume. Mais Viserys est presque aussi instable mentalement que son père."
+                },
+
+                {
+                    "season": 1,
+                    "episode" : 3,
+                    "title": "Lord Snow",
+                    "synopsis": "Sur le continent de Westeros, le roi Robert Baratheon règne sur le royaume des Sept Couronnes depuis qu'il a mené à la victoire la rébellion contre le roi fou, Ærys II Targaryen, dix-sept ans plus tôt. Son guide et principal conseiller, Jon Arryn, venant de décéder, il part dans le nord du royaume demander à son vieil ami Eddard Stark, seigneur suzerain du Nord et de la maison Stark, de remplacer leur regretté mentor au poste de « main du roi ». Eddard, peu désireux de quitter ses terres, accepte à contre-cœur de partir à la cour avec ses deux filles Arya et Sansa, alors que Jon Snow, son fils bâtard, se prépare à intégrer la fameuse Garde de Nuit. Cette confrérie est chargée depuis les Premiers Hommes de protéger le royaume de toute créature pouvant provenir d'au-delà du Mur protecteur. Mais elle n'est plus que l'ombre d'elle-même avec le peu de moyens dont elle dispose, alors que des rumeurs inquiétantes se multiplient sur le retour possible des Marcheurs blancs, créatures surnaturelles capables de réanimer les morts. Juste avant le départ pour le Sud, Bran Stark découvre, en escaladant une tour de Winterfell, la reine Cersei et son frère jumeau en pleins ébats. Pour éviter que leur relation adultère incestueuse ne soit découverte, ce dernier pousse le garçon dans le vide. Dans le même temps, sur le continent Est, Viserys Targaryen, héritier « légitime » en exil des Sept Couronnes et fils d'Ærys, projette de marier sa jeune sœur Daenerys au khal Drogo, le chef d'une puissante horde de cavaliers nomades, afin de s'en faire des alliés en vue de la reconquête du royaume. Mais Viserys est presque aussi instable mentalement que son père."
+                },
+
+                {
+                    "season": 1,
+                    "episode" : 4,
+                    "title" : "Infirmes, Bâtards et Choses brisées",
+                    "synopsis": "Sur le continent de Westeros, le roi Robert Baratheon règne sur le royaume des Sept Couronnes depuis qu'il a mené à la victoire la rébellion contre le roi fou, Ærys II Targaryen, dix-sept ans plus tôt. Son guide et principal conseiller, Jon Arryn, venant de décéder, il part dans le nord du royaume demander à son vieil ami Eddard Stark, seigneur suzerain du Nord et de la maison Stark, de remplacer leur regretté mentor au poste de « main du roi ». Eddard, peu désireux de quitter ses terres, accepte à contre-cœur de partir à la cour avec ses deux filles Arya et Sansa, alors que Jon Snow, son fils bâtard, se prépare à intégrer la fameuse Garde de Nuit. Cette confrérie est chargée depuis les Premiers Hommes de protéger le royaume de toute créature pouvant provenir d'au-delà du Mur protecteur. Mais elle n'est plus que l'ombre d'elle-même avec le peu de moyens dont elle dispose, alors que des rumeurs inquiétantes se multiplient sur le retour possible des Marcheurs blancs, créatures surnaturelles capables de réanimer les morts. Juste avant le départ pour le Sud, Bran Stark découvre, en escaladant une tour de Winterfell, la reine Cersei et son frère jumeau en pleins ébats. Pour éviter que leur relation adultère incestueuse ne soit découverte, ce dernier pousse le garçon dans le vide. Dans le même temps, sur le continent Est, Viserys Targaryen, héritier « légitime » en exil des Sept Couronnes et fils d'Ærys, projette de marier sa jeune sœur Daenerys au khal Drogo, le chef d'une puissante horde de cavaliers nomades, afin de s'en faire des alliés en vue de la reconquête du royaume. Mais Viserys est presque aussi instable mentalement que son père."
+                },
+
+                {
+                    "season": 1,
+                    "episode" : 5,
+                    "title" : "Le Loup et le Lion",
+                    "synopsis": "Sur le continent de Westeros, le roi Robert Baratheon règne sur le royaume des Sept Couronnes depuis qu'il a mené à la victoire la rébellion contre le roi fou, Ærys II Targaryen, dix-sept ans plus tôt. Son guide et principal conseiller, Jon Arryn, venant de décéder, il part dans le nord du royaume demander à son vieil ami Eddard Stark, seigneur suzerain du Nord et de la maison Stark, de remplacer leur regretté mentor au poste de « main du roi ». Eddard, peu désireux de quitter ses terres, accepte à contre-cœur de partir à la cour avec ses deux filles Arya et Sansa, alors que Jon Snow, son fils bâtard, se prépare à intégrer la fameuse Garde de Nuit. Cette confrérie est chargée depuis les Premiers Hommes de protéger le royaume de toute créature pouvant provenir d'au-delà du Mur protecteur. Mais elle n'est plus que l'ombre d'elle-même avec le peu de moyens dont elle dispose, alors que des rumeurs inquiétantes se multiplient sur le retour possible des Marcheurs blancs, créatures surnaturelles capables de réanimer les morts. Juste avant le départ pour le Sud, Bran Stark découvre, en escaladant une tour de Winterfell, la reine Cersei et son frère jumeau en pleins ébats. Pour éviter que leur relation adultère incestueuse ne soit découverte, ce dernier pousse le garçon dans le vide. Dans le même temps, sur le continent Est, Viserys Targaryen, héritier « légitime » en exil des Sept Couronnes et fils d'Ærys, projette de marier sa jeune sœur Daenerys au khal Drogo, le chef d'une puissante horde de cavaliers nomades, afin de s'en faire des alliés en vue de la reconquête du royaume. Mais Viserys est presque aussi instable mentalement que son père."
+                },
+
+                {
+                    "season": 1,
+                    "episode" : 6,
+                    "title" : "Une couronne dorée",
+                    "synopsis": "Sur le continent de Westeros, le roi Robert Baratheon règne sur le royaume des Sept Couronnes depuis qu'il a mené à la victoire la rébellion contre le roi fou, Ærys II Targaryen, dix-sept ans plus tôt. Son guide et principal conseiller, Jon Arryn, venant de décéder, il part dans le nord du royaume demander à son vieil ami Eddard Stark, seigneur suzerain du Nord et de la maison Stark, de remplacer leur regretté mentor au poste de « main du roi ». Eddard, peu désireux de quitter ses terres, accepte à contre-cœur de partir à la cour avec ses deux filles Arya et Sansa, alors que Jon Snow, son fils bâtard, se prépare à intégrer la fameuse Garde de Nuit. Cette confrérie est chargée depuis les Premiers Hommes de protéger le royaume de toute créature pouvant provenir d'au-delà du Mur protecteur. Mais elle n'est plus que l'ombre d'elle-même avec le peu de moyens dont elle dispose, alors que des rumeurs inquiétantes se multiplient sur le retour possible des Marcheurs blancs, créatures surnaturelles capables de réanimer les morts. Juste avant le départ pour le Sud, Bran Stark découvre, en escaladant une tour de Winterfell, la reine Cersei et son frère jumeau en pleins ébats. Pour éviter que leur relation adultère incestueuse ne soit découverte, ce dernier pousse le garçon dans le vide. Dans le même temps, sur le continent Est, Viserys Targaryen, héritier « légitime » en exil des Sept Couronnes et fils d'Ærys, projette de marier sa jeune sœur Daenerys au khal Drogo, le chef d'une puissante horde de cavaliers nomades, afin de s'en faire des alliés en vue de la reconquête du royaume. Mais Viserys est presque aussi instable mentalement que son père."
+                },
+
+                {
+                    "season": 1,
+                    "episode" : 7,
+                    "title" : "Gagner ou mourir",
+                    "synopsis": "Sur le continent de Westeros, le roi Robert Baratheon règne sur le royaume des Sept Couronnes depuis qu'il a mené à la victoire la rébellion contre le roi fou, Ærys II Targaryen, dix-sept ans plus tôt. Son guide et principal conseiller, Jon Arryn, venant de décéder, il part dans le nord du royaume demander à son vieil ami Eddard Stark, seigneur suzerain du Nord et de la maison Stark, de remplacer leur regretté mentor au poste de « main du roi ». Eddard, peu désireux de quitter ses terres, accepte à contre-cœur de partir à la cour avec ses deux filles Arya et Sansa, alors que Jon Snow, son fils bâtard, se prépare à intégrer la fameuse Garde de Nuit. Cette confrérie est chargée depuis les Premiers Hommes de protéger le royaume de toute créature pouvant provenir d'au-delà du Mur protecteur. Mais elle n'est plus que l'ombre d'elle-même avec le peu de moyens dont elle dispose, alors que des rumeurs inquiétantes se multiplient sur le retour possible des Marcheurs blancs, créatures surnaturelles capables de réanimer les morts. Juste avant le départ pour le Sud, Bran Stark découvre, en escaladant une tour de Winterfell, la reine Cersei et son frère jumeau en pleins ébats. Pour éviter que leur relation adultère incestueuse ne soit découverte, ce dernier pousse le garçon dans le vide. Dans le même temps, sur le continent Est, Viserys Targaryen, héritier « légitime » en exil des Sept Couronnes et fils d'Ærys, projette de marier sa jeune sœur Daenerys au khal Drogo, le chef d'une puissante horde de cavaliers nomades, afin de s'en faire des alliés en vue de la reconquête du royaume. Mais Viserys est presque aussi instable mentalement que son père."
+                },
+
+                {
+                    "season": 1,
+                    "episode" : 8,
+                    "title" : "Frapper d'estoc",
+                    "synopsis": "Sur le continent de Westeros, le roi Robert Baratheon règne sur le royaume des Sept Couronnes depuis qu'il a mené à la victoire la rébellion contre le roi fou, Ærys II Targaryen, dix-sept ans plus tôt. Son guide et principal conseiller, Jon Arryn, venant de décéder, il part dans le nord du royaume demander à son vieil ami Eddard Stark, seigneur suzerain du Nord et de la maison Stark, de remplacer leur regretté mentor au poste de « main du roi ». Eddard, peu désireux de quitter ses terres, accepte à contre-cœur de partir à la cour avec ses deux filles Arya et Sansa, alors que Jon Snow, son fils bâtard, se prépare à intégrer la fameuse Garde de Nuit. Cette confrérie est chargée depuis les Premiers Hommes de protéger le royaume de toute créature pouvant provenir d'au-delà du Mur protecteur. Mais elle n'est plus que l'ombre d'elle-même avec le peu de moyens dont elle dispose, alors que des rumeurs inquiétantes se multiplient sur le retour possible des Marcheurs blancs, créatures surnaturelles capables de réanimer les morts. Juste avant le départ pour le Sud, Bran Stark découvre, en escaladant une tour de Winterfell, la reine Cersei et son frère jumeau en pleins ébats. Pour éviter que leur relation adultère incestueuse ne soit découverte, ce dernier pousse le garçon dans le vide. Dans le même temps, sur le continent Est, Viserys Targaryen, héritier « légitime » en exil des Sept Couronnes et fils d'Ærys, projette de marier sa jeune sœur Daenerys au khal Drogo, le chef d'une puissante horde de cavaliers nomades, afin de s'en faire des alliés en vue de la reconquête du royaume. Mais Viserys est presque aussi instable mentalement que son père."
+                },
+
+                {
+                    "season": 1,
+                    "episode" : 9,
+                    "title" : "Baelor",
+                    "synopsis": "Sur le continent de Westeros, le roi Robert Baratheon règne sur le royaume des Sept Couronnes depuis qu'il a mené à la victoire la rébellion contre le roi fou, Ærys II Targaryen, dix-sept ans plus tôt. Son guide et principal conseiller, Jon Arryn, venant de décéder, il part dans le nord du royaume demander à son vieil ami Eddard Stark, seigneur suzerain du Nord et de la maison Stark, de remplacer leur regretté mentor au poste de « main du roi ». Eddard, peu désireux de quitter ses terres, accepte à contre-cœur de partir à la cour avec ses deux filles Arya et Sansa, alors que Jon Snow, son fils bâtard, se prépare à intégrer la fameuse Garde de Nuit. Cette confrérie est chargée depuis les Premiers Hommes de protéger le royaume de toute créature pouvant provenir d'au-delà du Mur protecteur. Mais elle n'est plus que l'ombre d'elle-même avec le peu de moyens dont elle dispose, alors que des rumeurs inquiétantes se multiplient sur le retour possible des Marcheurs blancs, créatures surnaturelles capables de réanimer les morts. Juste avant le départ pour le Sud, Bran Stark découvre, en escaladant une tour de Winterfell, la reine Cersei et son frère jumeau en pleins ébats. Pour éviter que leur relation adultère incestueuse ne soit découverte, ce dernier pousse le garçon dans le vide. Dans le même temps, sur le continent Est, Viserys Targaryen, héritier « légitime » en exil des Sept Couronnes et fils d'Ærys, projette de marier sa jeune sœur Daenerys au khal Drogo, le chef d'une puissante horde de cavaliers nomades, afin de s'en faire des alliés en vue de la reconquête du royaume. Mais Viserys est presque aussi instable mentalement que son père."
+                },
+
+                {
+                    "season": 1,
+                    "episode" : 10,
+                    "title" : "De feu et de sang",
+                    "synopsis": "Sur le continent de Westeros, le roi Robert Baratheon règne sur le royaume des Sept Couronnes depuis qu'il a mené à la victoire la rébellion contre le roi fou, Ærys II Targaryen, dix-sept ans plus tôt. Son guide et principal conseiller, Jon Arryn, venant de décéder, il part dans le nord du royaume demander à son vieil ami Eddard Stark, seigneur suzerain du Nord et de la maison Stark, de remplacer leur regretté mentor au poste de « main du roi ». Eddard, peu désireux de quitter ses terres, accepte à contre-cœur de partir à la cour avec ses deux filles Arya et Sansa, alors que Jon Snow, son fils bâtard, se prépare à intégrer la fameuse Garde de Nuit. Cette confrérie est chargée depuis les Premiers Hommes de protéger le royaume de toute créature pouvant provenir d'au-delà du Mur protecteur. Mais elle n'est plus que l'ombre d'elle-même avec le peu de moyens dont elle dispose, alors que des rumeurs inquiétantes se multiplient sur le retour possible des Marcheurs blancs, créatures surnaturelles capables de réanimer les morts. Juste avant le départ pour le Sud, Bran Stark découvre, en escaladant une tour de Winterfell, la reine Cersei et son frère jumeau en pleins ébats. Pour éviter que leur relation adultère incestueuse ne soit découverte, ce dernier pousse le garçon dans le vide. Dans le même temps, sur le continent Est, Viserys Targaryen, héritier « légitime » en exil des Sept Couronnes et fils d'Ærys, projette de marier sa jeune sœur Daenerys au khal Drogo, le chef d'une puissante horde de cavaliers nomades, afin de s'en faire des alliés en vue de la reconquête du royaume. Mais Viserys est presque aussi instable mentalement que son père."
+                },
+
+                {
+                    "season": 2,
+                    "episode" : 1,
+                    "title": "Le Nord se souvient",
+                    "synopsis": "Après la mort du roi Robert Baratheon et d'Eddard Stark, la légitimité du roi Joffrey est contestée par Stannis et Renly, frères de Robert, tandis que Sansa Stark est retenue comme otage à Port-Réal. Robb Stark poursuit sa rébellion pour venger son père et libérer sa sœur, bien que personne ne sache où se trouve Arya Stark. Lord Tywin Lannister, père de la reine Cersei et grand-père du roi, qui détient Arya sans le savoir, continue de son côté à lutter à la fois contre les Baratheon et contre les Nordiens de Robb Stark. Chaque camp cherche de nouveaux alliés et la guerre des Cinq Rois se prolonge, ignorant la menace d'au-delà du Mur. Au Nord, le Lord Commandant Jeor Mormont continue de guider la Garde de Nuit face aux Sauvageons, soutenu par Jon Snow, cherchant désespérément un moyen d'arrêter la marche de leur immense armée vers le sud. Après quoi, le retour des Marcheurs blancs est officiellement acté.De l'autre côté du détroit, après avoir perdu les Dothraki, Daenerys Targaryen emmène ses dragons jusqu'à la cité de Qarth, où elle espère trouver un appui en vue de reconquérir les Sept Couronnes."
+                },
+
+                {
+                    "season": 2,
+                    "episode" : 2,
+                    "title": "Les Contrées nocturnes",
+                    "synopsis": "Après la mort du roi Robert Baratheon et d'Eddard Stark, la légitimité du roi Joffrey est contestée par Stannis et Renly, frères de Robert, tandis que Sansa Stark est retenue comme otage à Port-Réal. Robb Stark poursuit sa rébellion pour venger son père et libérer sa sœur, bien que personne ne sache où se trouve Arya Stark. Lord Tywin Lannister, père de la reine Cersei et grand-père du roi, qui détient Arya sans le savoir, continue de son côté à lutter à la fois contre les Baratheon et contre les Nordiens de Robb Stark. Chaque camp cherche de nouveaux alliés et la guerre des Cinq Rois se prolonge, ignorant la menace d'au-delà du Mur. Au Nord, le Lord Commandant Jeor Mormont continue de guider la Garde de Nuit face aux Sauvageons, soutenu par Jon Snow, cherchant désespérément un moyen d'arrêter la marche de leur immense armée vers le sud. Après quoi, le retour des Marcheurs blancs est officiellement acté.De l'autre côté du détroit, après avoir perdu les Dothraki, Daenerys Targaryen emmène ses dragons jusqu'à la cité de Qarth, où elle espère trouver un appui en vue de reconquérir les Sept Couronnes."
+                },
+
+                {
+                    "season": 2,
+                    "episode" : 3,
+                    "title": "Ce qui est mort ne saurait mourir",
+                    "synopsis": "Après la mort du roi Robert Baratheon et d'Eddard Stark, la légitimité du roi Joffrey est contestée par Stannis et Renly, frères de Robert, tandis que Sansa Stark est retenue comme otage à Port-Réal. Robb Stark poursuit sa rébellion pour venger son père et libérer sa sœur, bien que personne ne sache où se trouve Arya Stark. Lord Tywin Lannister, père de la reine Cersei et grand-père du roi, qui détient Arya sans le savoir, continue de son côté à lutter à la fois contre les Baratheon et contre les Nordiens de Robb Stark. Chaque camp cherche de nouveaux alliés et la guerre des Cinq Rois se prolonge, ignorant la menace d'au-delà du Mur. Au Nord, le Lord Commandant Jeor Mormont continue de guider la Garde de Nuit face aux Sauvageons, soutenu par Jon Snow, cherchant désespérément un moyen d'arrêter la marche de leur immense armée vers le sud. Après quoi, le retour des Marcheurs blancs est officiellement acté.De l'autre côté du détroit, après avoir perdu les Dothraki, Daenerys Targaryen emmène ses dragons jusqu'à la cité de Qarth, où elle espère trouver un appui en vue de reconquérir les Sept Couronnes."
+                },
+
+                {
+                    "season": 2,
+                    "episode" : 4,
+                    "title": "Le Jardin des os",
+                    "synopsis": "Après la mort du roi Robert Baratheon et d'Eddard Stark, la légitimité du roi Joffrey est contestée par Stannis et Renly, frères de Robert, tandis que Sansa Stark est retenue comme otage à Port-Réal. Robb Stark poursuit sa rébellion pour venger son père et libérer sa sœur, bien que personne ne sache où se trouve Arya Stark. Lord Tywin Lannister, père de la reine Cersei et grand-père du roi, qui détient Arya sans le savoir, continue de son côté à lutter à la fois contre les Baratheon et contre les Nordiens de Robb Stark. Chaque camp cherche de nouveaux alliés et la guerre des Cinq Rois se prolonge, ignorant la menace d'au-delà du Mur. Au Nord, le Lord Commandant Jeor Mormont continue de guider la Garde de Nuit face aux Sauvageons, soutenu par Jon Snow, cherchant désespérément un moyen d'arrêter la marche de leur immense armée vers le sud. Après quoi, le retour des Marcheurs blancs est officiellement acté.De l'autre côté du détroit, après avoir perdu les Dothraki, Daenerys Targaryen emmène ses dragons jusqu'à la cité de Qarth, où elle espère trouver un appui en vue de reconquérir les Sept Couronnes."
+                },
+
+                {
+                    "season": 2,
+                    "episode" : 5,
+                    "title": "Le Fantôme d'Harrenhal",
+                    "synopsis": "Après la mort du roi Robert Baratheon et d'Eddard Stark, la légitimité du roi Joffrey est contestée par Stannis et Renly, frères de Robert, tandis que Sansa Stark est retenue comme otage à Port-Réal. Robb Stark poursuit sa rébellion pour venger son père et libérer sa sœur, bien que personne ne sache où se trouve Arya Stark. Lord Tywin Lannister, père de la reine Cersei et grand-père du roi, qui détient Arya sans le savoir, continue de son côté à lutter à la fois contre les Baratheon et contre les Nordiens de Robb Stark. Chaque camp cherche de nouveaux alliés et la guerre des Cinq Rois se prolonge, ignorant la menace d'au-delà du Mur. Au Nord, le Lord Commandant Jeor Mormont continue de guider la Garde de Nuit face aux Sauvageons, soutenu par Jon Snow, cherchant désespérément un moyen d'arrêter la marche de leur immense armée vers le sud. Après quoi, le retour des Marcheurs blancs est officiellement acté.De l'autre côté du détroit, après avoir perdu les Dothraki, Daenerys Targaryen emmène ses dragons jusqu'à la cité de Qarth, où elle espère trouver un appui en vue de reconquérir les Sept Couronnes."
+                },
+
+                {
+                    "season": 2,
+                    "episode" : 6,
+                    "title": "Les Anciens et les Nouveaux Dieux",
+                    "synopsis": "Après la mort du roi Robert Baratheon et d'Eddard Stark, la légitimité du roi Joffrey est contestée par Stannis et Renly, frères de Robert, tandis que Sansa Stark est retenue comme otage à Port-Réal. Robb Stark poursuit sa rébellion pour venger son père et libérer sa sœur, bien que personne ne sache où se trouve Arya Stark. Lord Tywin Lannister, père de la reine Cersei et grand-père du roi, qui détient Arya sans le savoir, continue de son côté à lutter à la fois contre les Baratheon et contre les Nordiens de Robb Stark. Chaque camp cherche de nouveaux alliés et la guerre des Cinq Rois se prolonge, ignorant la menace d'au-delà du Mur. Au Nord, le Lord Commandant Jeor Mormont continue de guider la Garde de Nuit face aux Sauvageons, soutenu par Jon Snow, cherchant désespérément un moyen d'arrêter la marche de leur immense armée vers le sud. Après quoi, le retour des Marcheurs blancs est officiellement acté.De l'autre côté du détroit, après avoir perdu les Dothraki, Daenerys Targaryen emmène ses dragons jusqu'à la cité de Qarth, où elle espère trouver un appui en vue de reconquérir les Sept Couronnes."
+                },
+
+                {
+                    "season": 2,
+                    "episode" : 7,
+                    "title": "Un homme sans honneur",
+                    "synopsis": "Après la mort du roi Robert Baratheon et d'Eddard Stark, la légitimité du roi Joffrey est contestée par Stannis et Renly, frères de Robert, tandis que Sansa Stark est retenue comme otage à Port-Réal. Robb Stark poursuit sa rébellion pour venger son père et libérer sa sœur, bien que personne ne sache où se trouve Arya Stark. Lord Tywin Lannister, père de la reine Cersei et grand-père du roi, qui détient Arya sans le savoir, continue de son côté à lutter à la fois contre les Baratheon et contre les Nordiens de Robb Stark. Chaque camp cherche de nouveaux alliés et la guerre des Cinq Rois se prolonge, ignorant la menace d'au-delà du Mur. Au Nord, le Lord Commandant Jeor Mormont continue de guider la Garde de Nuit face aux Sauvageons, soutenu par Jon Snow, cherchant désespérément un moyen d'arrêter la marche de leur immense armée vers le sud. Après quoi, le retour des Marcheurs blancs est officiellement acté.De l'autre côté du détroit, après avoir perdu les Dothraki, Daenerys Targaryen emmène ses dragons jusqu'à la cité de Qarth, où elle espère trouver un appui en vue de reconquérir les Sept Couronnes."
+                },
+
+                {
+                    "season": 2,
+                    "episode" : 8,
+                    "title": "Le Prince de Winterfell",
+                    "synopsis": "Après la mort du roi Robert Baratheon et d'Eddard Stark, la légitimité du roi Joffrey est contestée par Stannis et Renly, frères de Robert, tandis que Sansa Stark est retenue comme otage à Port-Réal. Robb Stark poursuit sa rébellion pour venger son père et libérer sa sœur, bien que personne ne sache où se trouve Arya Stark. Lord Tywin Lannister, père de la reine Cersei et grand-père du roi, qui détient Arya sans le savoir, continue de son côté à lutter à la fois contre les Baratheon et contre les Nordiens de Robb Stark. Chaque camp cherche de nouveaux alliés et la guerre des Cinq Rois se prolonge, ignorant la menace d'au-delà du Mur. Au Nord, le Lord Commandant Jeor Mormont continue de guider la Garde de Nuit face aux Sauvageons, soutenu par Jon Snow, cherchant désespérément un moyen d'arrêter la marche de leur immense armée vers le sud. Après quoi, le retour des Marcheurs blancs est officiellement acté.De l'autre côté du détroit, après avoir perdu les Dothraki, Daenerys Targaryen emmène ses dragons jusqu'à la cité de Qarth, où elle espère trouver un appui en vue de reconquérir les Sept Couronnes."
+                },
+
+                {
+                    "season": 2,
+                    "episode" : 9,
+                    "title": "La Néra",
+                    "synopsis": "Après la mort du roi Robert Baratheon et d'Eddard Stark, la légitimité du roi Joffrey est contestée par Stannis et Renly, frères de Robert, tandis que Sansa Stark est retenue comme otage à Port-Réal. Robb Stark poursuit sa rébellion pour venger son père et libérer sa sœur, bien que personne ne sache où se trouve Arya Stark. Lord Tywin Lannister, père de la reine Cersei et grand-père du roi, qui détient Arya sans le savoir, continue de son côté à lutter à la fois contre les Baratheon et contre les Nordiens de Robb Stark. Chaque camp cherche de nouveaux alliés et la guerre des Cinq Rois se prolonge, ignorant la menace d'au-delà du Mur. Au Nord, le Lord Commandant Jeor Mormont continue de guider la Garde de Nuit face aux Sauvageons, soutenu par Jon Snow, cherchant désespérément un moyen d'arrêter la marche de leur immense armée vers le sud. Après quoi, le retour des Marcheurs blancs est officiellement acté.De l'autre côté du détroit, après avoir perdu les Dothraki, Daenerys Targaryen emmène ses dragons jusqu'à la cité de Qarth, où elle espère trouver un appui en vue de reconquérir les Sept Couronnes."
+                },
+                
+                {
+                    "season": 2,
+                    "episode" : 10,
+                    "title": "Valar Morghulis",
+                    "synopsis": "Après la mort du roi Robert Baratheon et d'Eddard Stark, la légitimité du roi Joffrey est contestée par Stannis et Renly, frères de Robert, tandis que Sansa Stark est retenue comme otage à Port-Réal. Robb Stark poursuit sa rébellion pour venger son père et libérer sa sœur, bien que personne ne sache où se trouve Arya Stark. Lord Tywin Lannister, père de la reine Cersei et grand-père du roi, qui détient Arya sans le savoir, continue de son côté à lutter à la fois contre les Baratheon et contre les Nordiens de Robb Stark. Chaque camp cherche de nouveaux alliés et la guerre des Cinq Rois se prolonge, ignorant la menace d'au-delà du Mur. Au Nord, le Lord Commandant Jeor Mormont continue de guider la Garde de Nuit face aux Sauvageons, soutenu par Jon Snow, cherchant désespérément un moyen d'arrêter la marche de leur immense armée vers le sud. Après quoi, le retour des Marcheurs blancs est officiellement acté.De l'autre côté du détroit, après avoir perdu les Dothraki, Daenerys Targaryen emmène ses dragons jusqu'à la cité de Qarth, où elle espère trouver un appui en vue de reconquérir les Sept Couronnes."
+                },
+
+                {
+                    "season": 3,
+                    "episode" : 1,
+                    "title": "Valar Dohaeris",
+                    "synopsis": "Après les batailles de la saison précédente, le conflit s'apaise : moins de combats et plus de diplomatie. Alors que la guerre continue entre les forces du Nord sous la bannière de Robb Stark et celles du roi et de la famille Lannister, l'accent est mis sur les alliances entre les différentes factions qui luttent pour le pouvoir. Joffrey prépare son mariage avec Margaery Tyrell, Tywin Lannister organise des mariages prestigieux pour ses deux enfants disponibles et Robb doit offrir la main de son oncle pour espérer regagner le soutien de la maison Frey après avoir manqué à sa parole et rompu ses fiançailles avec l'une de ses filles.Pendant ce temps, Stannis désespère à Peyredragon, car si Melisandre lui propose une magie puissante pour conquérir le Trône de fer, son fidèle Davos fait tout pour éviter un cruel sacrifice. Theon subit les pires tortures aux mains d'un personnage étrange qui refuse de lui révéler son nom. Brienne et Jaime Lannister continuent leur route vers Port-Réal dans une région dévastée, leur relation se renforçant au fil des péripéties.Arya parcourt le Conflans avec de curieux compagnons, notamment Thoros de Myr et Béric Dondarrion, le chef de la Fraternité sans Bannières, honnêtes à leur façon et intéressés par la rançon qu'elle représente.Jon rejoint et infiltre les sauvageons pour franchir le Mur avec eux et cède aux charmes de la rousse Ygritte. Son cœur reste cependant fidèle à son serment envers la Garde de Nuit. Bran et Rickon voyagent vers le Nord, rejoints par deux enfants des marais qui leur transmettent leurs connaissances concernant les rêves et le lien avec leurs loups.Daenerys poursuit sa route sur le continent d'Essos. Après avoir pillé Qarth et s'être procuré un navire, elle arrive en vue de la cité d'Astapor, où elle a bien l'intention d'obtenir l'armée qui lui permettra de reprendre les Sept Couronnes."
+                },
+
+                {
+                    "season": 3,
+                    "episode" : 2,
+                    "title": "Noires Ailes, Noires Nouvelles",
+                    "synopsis": "Après les batailles de la saison précédente, le conflit s'apaise : moins de combats et plus de diplomatie. Alors que la guerre continue entre les forces du Nord sous la bannière de Robb Stark et celles du roi et de la famille Lannister, l'accent est mis sur les alliances entre les différentes factions qui luttent pour le pouvoir. Joffrey prépare son mariage avec Margaery Tyrell, Tywin Lannister organise des mariages prestigieux pour ses deux enfants disponibles et Robb doit offrir la main de son oncle pour espérer regagner le soutien de la maison Frey après avoir manqué à sa parole et rompu ses fiançailles avec l'une de ses filles.Pendant ce temps, Stannis désespère à Peyredragon, car si Melisandre lui propose une magie puissante pour conquérir le Trône de fer, son fidèle Davos fait tout pour éviter un cruel sacrifice. Theon subit les pires tortures aux mains d'un personnage étrange qui refuse de lui révéler son nom. Brienne et Jaime Lannister continuent leur route vers Port-Réal dans une région dévastée, leur relation se renforçant au fil des péripéties.Arya parcourt le Conflans avec de curieux compagnons, notamment Thoros de Myr et Béric Dondarrion, le chef de la Fraternité sans Bannières, honnêtes à leur façon et intéressés par la rançon qu'elle représente.Jon rejoint et infiltre les sauvageons pour franchir le Mur avec eux et cède aux charmes de la rousse Ygritte. Son cœur reste cependant fidèle à son serment envers la Garde de Nuit. Bran et Rickon voyagent vers le Nord, rejoints par deux enfants des marais qui leur transmettent leurs connaissances concernant les rêves et le lien avec leurs loups.Daenerys poursuit sa route sur le continent d'Essos. Après avoir pillé Qarth et s'être procuré un navire, elle arrive en vue de la cité d'Astapor, où elle a bien l'intention d'obtenir l'armée qui lui permettra de reprendre les Sept Couronnes."
+                },
+
+                {
+                    "season": 3,
+                    "episode" : 3,
+                    "title": "Les Immaculés",
+                    "synopsis": "Après les batailles de la saison précédente, le conflit s'apaise : moins de combats et plus de diplomatie. Alors que la guerre continue entre les forces du Nord sous la bannière de Robb Stark et celles du roi et de la famille Lannister, l'accent est mis sur les alliances entre les différentes factions qui luttent pour le pouvoir. Joffrey prépare son mariage avec Margaery Tyrell, Tywin Lannister organise des mariages prestigieux pour ses deux enfants disponibles et Robb doit offrir la main de son oncle pour espérer regagner le soutien de la maison Frey après avoir manqué à sa parole et rompu ses fiançailles avec l'une de ses filles.Pendant ce temps, Stannis désespère à Peyredragon, car si Melisandre lui propose une magie puissante pour conquérir le Trône de fer, son fidèle Davos fait tout pour éviter un cruel sacrifice. Theon subit les pires tortures aux mains d'un personnage étrange qui refuse de lui révéler son nom. Brienne et Jaime Lannister continuent leur route vers Port-Réal dans une région dévastée, leur relation se renforçant au fil des péripéties.Arya parcourt le Conflans avec de curieux compagnons, notamment Thoros de Myr et Béric Dondarrion, le chef de la Fraternité sans Bannières, honnêtes à leur façon et intéressés par la rançon qu'elle représente.Jon rejoint et infiltre les sauvageons pour franchir le Mur avec eux et cède aux charmes de la rousse Ygritte. Son cœur reste cependant fidèle à son serment envers la Garde de Nuit. Bran et Rickon voyagent vers le Nord, rejoints par deux enfants des marais qui leur transmettent leurs connaissances concernant les rêves et le lien avec leurs loups.Daenerys poursuit sa route sur le continent d'Essos. Après avoir pillé Qarth et s'être procuré un navire, elle arrive en vue de la cité d'Astapor, où elle a bien l'intention d'obtenir l'armée qui lui permettra de reprendre les Sept Couronnes."
+                },
+
+                {
+                    "season": 3,
+                    "episode" : 4,
+                    "title": "Voici que son tour de garde est fini",
+                    "synopsis": "Après les batailles de la saison précédente, le conflit s'apaise : moins de combats et plus de diplomatie. Alors que la guerre continue entre les forces du Nord sous la bannière de Robb Stark et celles du roi et de la famille Lannister, l'accent est mis sur les alliances entre les différentes factions qui luttent pour le pouvoir. Joffrey prépare son mariage avec Margaery Tyrell, Tywin Lannister organise des mariages prestigieux pour ses deux enfants disponibles et Robb doit offrir la main de son oncle pour espérer regagner le soutien de la maison Frey après avoir manqué à sa parole et rompu ses fiançailles avec l'une de ses filles.Pendant ce temps, Stannis désespère à Peyredragon, car si Melisandre lui propose une magie puissante pour conquérir le Trône de fer, son fidèle Davos fait tout pour éviter un cruel sacrifice. Theon subit les pires tortures aux mains d'un personnage étrange qui refuse de lui révéler son nom. Brienne et Jaime Lannister continuent leur route vers Port-Réal dans une région dévastée, leur relation se renforçant au fil des péripéties.Arya parcourt le Conflans avec de curieux compagnons, notamment Thoros de Myr et Béric Dondarrion, le chef de la Fraternité sans Bannières, honnêtes à leur façon et intéressés par la rançon qu'elle représente.Jon rejoint et infiltre les sauvageons pour franchir le Mur avec eux et cède aux charmes de la rousse Ygritte. Son cœur reste cependant fidèle à son serment envers la Garde de Nuit. Bran et Rickon voyagent vers le Nord, rejoints par deux enfants des marais qui leur transmettent leurs connaissances concernant les rêves et le lien avec leurs loups.Daenerys poursuit sa route sur le continent d'Essos. Après avoir pillé Qarth et s'être procuré un navire, elle arrive en vue de la cité d'Astapor, où elle a bien l'intention d'obtenir l'armée qui lui permettra de reprendre les Sept Couronnes."
+                },
+
+                {
+                    "season": 3,
+                    "episode" : 5,
+                    "title": "Baisée par le feu",
+                    "synopsis": "Après les batailles de la saison précédente, le conflit s'apaise : moins de combats et plus de diplomatie. Alors que la guerre continue entre les forces du Nord sous la bannière de Robb Stark et celles du roi et de la famille Lannister, l'accent est mis sur les alliances entre les différentes factions qui luttent pour le pouvoir. Joffrey prépare son mariage avec Margaery Tyrell, Tywin Lannister organise des mariages prestigieux pour ses deux enfants disponibles et Robb doit offrir la main de son oncle pour espérer regagner le soutien de la maison Frey après avoir manqué à sa parole et rompu ses fiançailles avec l'une de ses filles.Pendant ce temps, Stannis désespère à Peyredragon, car si Melisandre lui propose une magie puissante pour conquérir le Trône de fer, son fidèle Davos fait tout pour éviter un cruel sacrifice. Theon subit les pires tortures aux mains d'un personnage étrange qui refuse de lui révéler son nom. Brienne et Jaime Lannister continuent leur route vers Port-Réal dans une région dévastée, leur relation se renforçant au fil des péripéties.Arya parcourt le Conflans avec de curieux compagnons, notamment Thoros de Myr et Béric Dondarrion, le chef de la Fraternité sans Bannières, honnêtes à leur façon et intéressés par la rançon qu'elle représente.Jon rejoint et infiltre les sauvageons pour franchir le Mur avec eux et cède aux charmes de la rousse Ygritte. Son cœur reste cependant fidèle à son serment envers la Garde de Nuit. Bran et Rickon voyagent vers le Nord, rejoints par deux enfants des marais qui leur transmettent leurs connaissances concernant les rêves et le lien avec leurs loups.Daenerys poursuit sa route sur le continent d'Essos. Après avoir pillé Qarth et s'être procuré un navire, elle arrive en vue de la cité d'Astapor, où elle a bien l'intention d'obtenir l'armée qui lui permettra de reprendre les Sept Couronnes."
+                },
+
+                {
+                    "season": 3,
+                    "episode" : 6,
+                    "title": "L'Ascension",
+                    "synopsis": "Après les batailles de la saison précédente, le conflit s'apaise : moins de combats et plus de diplomatie. Alors que la guerre continue entre les forces du Nord sous la bannière de Robb Stark et celles du roi et de la famille Lannister, l'accent est mis sur les alliances entre les différentes factions qui luttent pour le pouvoir. Joffrey prépare son mariage avec Margaery Tyrell, Tywin Lannister organise des mariages prestigieux pour ses deux enfants disponibles et Robb doit offrir la main de son oncle pour espérer regagner le soutien de la maison Frey après avoir manqué à sa parole et rompu ses fiançailles avec l'une de ses filles.Pendant ce temps, Stannis désespère à Peyredragon, car si Melisandre lui propose une magie puissante pour conquérir le Trône de fer, son fidèle Davos fait tout pour éviter un cruel sacrifice. Theon subit les pires tortures aux mains d'un personnage étrange qui refuse de lui révéler son nom. Brienne et Jaime Lannister continuent leur route vers Port-Réal dans une région dévastée, leur relation se renforçant au fil des péripéties.Arya parcourt le Conflans avec de curieux compagnons, notamment Thoros de Myr et Béric Dondarrion, le chef de la Fraternité sans Bannières, honnêtes à leur façon et intéressés par la rançon qu'elle représente.Jon rejoint et infiltre les sauvageons pour franchir le Mur avec eux et cède aux charmes de la rousse Ygritte. Son cœur reste cependant fidèle à son serment envers la Garde de Nuit. Bran et Rickon voyagent vers le Nord, rejoints par deux enfants des marais qui leur transmettent leurs connaissances concernant les rêves et le lien avec leurs loups.Daenerys poursuit sa route sur le continent d'Essos. Après avoir pillé Qarth et s'être procuré un navire, elle arrive en vue de la cité d'Astapor, où elle a bien l'intention d'obtenir l'armée qui lui permettra de reprendre les Sept Couronnes."
+                },
+
+                {
+                    "season": 3,
+                    "episode" : 7,
+                    "title": "L'Ours et la Belle",
+                    "synopsis": "Après les batailles de la saison précédente, le conflit s'apaise : moins de combats et plus de diplomatie. Alors que la guerre continue entre les forces du Nord sous la bannière de Robb Stark et celles du roi et de la famille Lannister, l'accent est mis sur les alliances entre les différentes factions qui luttent pour le pouvoir. Joffrey prépare son mariage avec Margaery Tyrell, Tywin Lannister organise des mariages prestigieux pour ses deux enfants disponibles et Robb doit offrir la main de son oncle pour espérer regagner le soutien de la maison Frey après avoir manqué à sa parole et rompu ses fiançailles avec l'une de ses filles.Pendant ce temps, Stannis désespère à Peyredragon, car si Melisandre lui propose une magie puissante pour conquérir le Trône de fer, son fidèle Davos fait tout pour éviter un cruel sacrifice. Theon subit les pires tortures aux mains d'un personnage étrange qui refuse de lui révéler son nom. Brienne et Jaime Lannister continuent leur route vers Port-Réal dans une région dévastée, leur relation se renforçant au fil des péripéties.Arya parcourt le Conflans avec de curieux compagnons, notamment Thoros de Myr et Béric Dondarrion, le chef de la Fraternité sans Bannières, honnêtes à leur façon et intéressés par la rançon qu'elle représente.Jon rejoint et infiltre les sauvageons pour franchir le Mur avec eux et cède aux charmes de la rousse Ygritte. Son cœur reste cependant fidèle à son serment envers la Garde de Nuit. Bran et Rickon voyagent vers le Nord, rejoints par deux enfants des marais qui leur transmettent leurs connaissances concernant les rêves et le lien avec leurs loups.Daenerys poursuit sa route sur le continent d'Essos. Après avoir pillé Qarth et s'être procuré un navire, elle arrive en vue de la cité d'Astapor, où elle a bien l'intention d'obtenir l'armée qui lui permettra de reprendre les Sept Couronnes."
+                },
+
+                {
+                    "season": 3,
+                    "episode" : 8,
+                    "title": "Les Puînés",
+                    "synopsis": "Après les batailles de la saison précédente, le conflit s'apaise : moins de combats et plus de diplomatie. Alors que la guerre continue entre les forces du Nord sous la bannière de Robb Stark et celles du roi et de la famille Lannister, l'accent est mis sur les alliances entre les différentes factions qui luttent pour le pouvoir. Joffrey prépare son mariage avec Margaery Tyrell, Tywin Lannister organise des mariages prestigieux pour ses deux enfants disponibles et Robb doit offrir la main de son oncle pour espérer regagner le soutien de la maison Frey après avoir manqué à sa parole et rompu ses fiançailles avec l'une de ses filles.Pendant ce temps, Stannis désespère à Peyredragon, car si Melisandre lui propose une magie puissante pour conquérir le Trône de fer, son fidèle Davos fait tout pour éviter un cruel sacrifice. Theon subit les pires tortures aux mains d'un personnage étrange qui refuse de lui révéler son nom. Brienne et Jaime Lannister continuent leur route vers Port-Réal dans une région dévastée, leur relation se renforçant au fil des péripéties.Arya parcourt le Conflans avec de curieux compagnons, notamment Thoros de Myr et Béric Dondarrion, le chef de la Fraternité sans Bannières, honnêtes à leur façon et intéressés par la rançon qu'elle représente.Jon rejoint et infiltre les sauvageons pour franchir le Mur avec eux et cède aux charmes de la rousse Ygritte. Son cœur reste cependant fidèle à son serment envers la Garde de Nuit. Bran et Rickon voyagent vers le Nord, rejoints par deux enfants des marais qui leur transmettent leurs connaissances concernant les rêves et le lien avec leurs loups.Daenerys poursuit sa route sur le continent d'Essos. Après avoir pillé Qarth et s'être procuré un navire, elle arrive en vue de la cité d'Astapor, où elle a bien l'intention d'obtenir l'armée qui lui permettra de reprendre les Sept Couronnes."
+                },
+
+                {
+                    "season": 3,
+                    "episode" : 9,
+                    "title": "Les Pluies de Castamere",
+                    "synopsis": "Après les batailles de la saison précédente, le conflit s'apaise : moins de combats et plus de diplomatie. Alors que la guerre continue entre les forces du Nord sous la bannière de Robb Stark et celles du roi et de la famille Lannister, l'accent est mis sur les alliances entre les différentes factions qui luttent pour le pouvoir. Joffrey prépare son mariage avec Margaery Tyrell, Tywin Lannister organise des mariages prestigieux pour ses deux enfants disponibles et Robb doit offrir la main de son oncle pour espérer regagner le soutien de la maison Frey après avoir manqué à sa parole et rompu ses fiançailles avec l'une de ses filles.Pendant ce temps, Stannis désespère à Peyredragon, car si Melisandre lui propose une magie puissante pour conquérir le Trône de fer, son fidèle Davos fait tout pour éviter un cruel sacrifice. Theon subit les pires tortures aux mains d'un personnage étrange qui refuse de lui révéler son nom. Brienne et Jaime Lannister continuent leur route vers Port-Réal dans une région dévastée, leur relation se renforçant au fil des péripéties.Arya parcourt le Conflans avec de curieux compagnons, notamment Thoros de Myr et Béric Dondarrion, le chef de la Fraternité sans Bannières, honnêtes à leur façon et intéressés par la rançon qu'elle représente.Jon rejoint et infiltre les sauvageons pour franchir le Mur avec eux et cède aux charmes de la rousse Ygritte. Son cœur reste cependant fidèle à son serment envers la Garde de Nuit. Bran et Rickon voyagent vers le Nord, rejoints par deux enfants des marais qui leur transmettent leurs connaissances concernant les rêves et le lien avec leurs loups.Daenerys poursuit sa route sur le continent d'Essos. Après avoir pillé Qarth et s'être procuré un navire, elle arrive en vue de la cité d'Astapor, où elle a bien l'intention d'obtenir l'armée qui lui permettra de reprendre les Sept Couronnes."
+                },
+
+                 
+                {
+                    "season": 3,
+                    "episode" : 10,
+                    "title": "Mhysa",
+                    "synopsis": "Après les batailles de la saison précédente, le conflit s'apaise : moins de combats et plus de diplomatie. Alors que la guerre continue entre les forces du Nord sous la bannière de Robb Stark et celles du roi et de la famille Lannister, l'accent est mis sur les alliances entre les différentes factions qui luttent pour le pouvoir. Joffrey prépare son mariage avec Margaery Tyrell, Tywin Lannister organise des mariages prestigieux pour ses deux enfants disponibles et Robb doit offrir la main de son oncle pour espérer regagner le soutien de la maison Frey après avoir manqué à sa parole et rompu ses fiançailles avec l'une de ses filles.Pendant ce temps, Stannis désespère à Peyredragon, car si Melisandre lui propose une magie puissante pour conquérir le Trône de fer, son fidèle Davos fait tout pour éviter un cruel sacrifice. Theon subit les pires tortures aux mains d'un personnage étrange qui refuse de lui révéler son nom. Brienne et Jaime Lannister continuent leur route vers Port-Réal dans une région dévastée, leur relation se renforçant au fil des péripéties.Arya parcourt le Conflans avec de curieux compagnons, notamment Thoros de Myr et Béric Dondarrion, le chef de la Fraternité sans Bannières, honnêtes à leur façon et intéressés par la rançon qu'elle représente.Jon rejoint et infiltre les sauvageons pour franchir le Mur avec eux et cède aux charmes de la rousse Ygritte. Son cœur reste cependant fidèle à son serment envers la Garde de Nuit. Bran et Rickon voyagent vers le Nord, rejoints par deux enfants des marais qui leur transmettent leurs connaissances concernant les rêves et le lien avec leurs loups.Daenerys poursuit sa route sur le continent d'Essos. Après avoir pillé Qarth et s'être procuré un navire, elle arrive en vue de la cité d'Astapor, où elle a bien l'intention d'obtenir l'armée qui lui permettra de reprendre les Sept Couronnes."
+                },
+
+                {
+                    "season": 4,
+                    "episode" : 1,
+                    "title": "Deux épées",
+                    "synopsis": "L'emprise des Lannister sur le trône de Fer est désormais totale, après le massacre des Noces pourpres, qui a vu la mort de nombreux partisans du camp Stark et de fait brisé le soulèvement du Nord, ce qui a pris un tournant décisif dans la guerre des Cinq Rois en faveur des Lannister.Alors que Stannis Baratheon, prétendant au trône de Fer, poursuit la reconstruction de son armée à Peyredragon, un danger imminent arrive du Sud, en la personne d'Oberyn Martell. Ce dernier, arrivé à Port-Réal pour le mariage du roi Joffrey et de sa fiancée Margaery Tyrell, est habité par un désir de vengeance. Lors du mariage du roi Joffrey, ce dernier meurt mystérieusement empoisonné durant le banquet et son oncle Tyrion est accusé de l'avoir assassiné. Le frère cadet de Joffrey, Tommen, accède donc au trône.Au Nord, la Garde de Nuit, affaiblie, semble dépassée par l’avancée de l’armée des Sauvageons de Mance Rayder, elle-même poursuivie par un ennemi plus redoutable : les Marcheurs blancs.À l'Est, Daenerys Targaryen, accompagnée de ses trois dragons et de son armée d’Immaculés, s’apprête à libérer la ville de Meereen, qui pourrait lui fournir assez de navires pour gagner Westeros et ainsi réclamer le trône de Fer3."
+                },
+ 
+                {
+                    "season": 4,
+                    "episode" : 2,
+                    "title": "Le Lion et la Rose",
+                    "synopsis": "L'emprise des Lannister sur le trône de Fer est désormais totale, après le massacre des Noces pourpres, qui a vu la mort de nombreux partisans du camp Stark et de fait brisé le soulèvement du Nord, ce qui a pris un tournant décisif dans la guerre des Cinq Rois en faveur des Lannister.Alors que Stannis Baratheon, prétendant au trône de Fer, poursuit la reconstruction de son armée à Peyredragon, un danger imminent arrive du Sud, en la personne d'Oberyn Martell. Ce dernier, arrivé à Port-Réal pour le mariage du roi Joffrey et de sa fiancée Margaery Tyrell, est habité par un désir de vengeance. Lors du mariage du roi Joffrey, ce dernier meurt mystérieusement empoisonné durant le banquet et son oncle Tyrion est accusé de l'avoir assassiné. Le frère cadet de Joffrey, Tommen, accède donc au trône.Au Nord, la Garde de Nuit, affaiblie, semble dépassée par l’avancée de l’armée des Sauvageons de Mance Rayder, elle-même poursuivie par un ennemi plus redoutable : les Marcheurs blancs.À l'Est, Daenerys Targaryen, accompagnée de ses trois dragons et de son armée d’Immaculés, s’apprête à libérer la ville de Meereen, qui pourrait lui fournir assez de navires pour gagner Westeros et ainsi réclamer le trône de Fer3."
+                },
+
+                {
+                    "season": 4,
+                    "episode" : 3,
+                    "title": "Briseuse de chaînes",
+                    "synopsis": "L'emprise des Lannister sur le trône de Fer est désormais totale, après le massacre des Noces pourpres, qui a vu la mort de nombreux partisans du camp Stark et de fait brisé le soulèvement du Nord, ce qui a pris un tournant décisif dans la guerre des Cinq Rois en faveur des Lannister.Alors que Stannis Baratheon, prétendant au trône de Fer, poursuit la reconstruction de son armée à Peyredragon, un danger imminent arrive du Sud, en la personne d'Oberyn Martell. Ce dernier, arrivé à Port-Réal pour le mariage du roi Joffrey et de sa fiancée Margaery Tyrell, est habité par un désir de vengeance. Lors du mariage du roi Joffrey, ce dernier meurt mystérieusement empoisonné durant le banquet et son oncle Tyrion est accusé de l'avoir assassiné. Le frère cadet de Joffrey, Tommen, accède donc au trône.Au Nord, la Garde de Nuit, affaiblie, semble dépassée par l’avancée de l’armée des Sauvageons de Mance Rayder, elle-même poursuivie par un ennemi plus redoutable : les Marcheurs blancs.À l'Est, Daenerys Targaryen, accompagnée de ses trois dragons et de son armée d’Immaculés, s’apprête à libérer la ville de Meereen, qui pourrait lui fournir assez de navires pour gagner Westeros et ainsi réclamer le trône de Fer3."
+                },
+
+                {
+                    "season": 4,
+                    "episode" : 4,
+                    "title": "Féale",
+                    "synopsis": "L'emprise des Lannister sur le trône de Fer est désormais totale, après le massacre des Noces pourpres, qui a vu la mort de nombreux partisans du camp Stark et de fait brisé le soulèvement du Nord, ce qui a pris un tournant décisif dans la guerre des Cinq Rois en faveur des Lannister.Alors que Stannis Baratheon, prétendant au trône de Fer, poursuit la reconstruction de son armée à Peyredragon, un danger imminent arrive du Sud, en la personne d'Oberyn Martell. Ce dernier, arrivé à Port-Réal pour le mariage du roi Joffrey et de sa fiancée Margaery Tyrell, est habité par un désir de vengeance. Lors du mariage du roi Joffrey, ce dernier meurt mystérieusement empoisonné durant le banquet et son oncle Tyrion est accusé de l'avoir assassiné. Le frère cadet de Joffrey, Tommen, accède donc au trône.Au Nord, la Garde de Nuit, affaiblie, semble dépassée par l’avancée de l’armée des Sauvageons de Mance Rayder, elle-même poursuivie par un ennemi plus redoutable : les Marcheurs blancs.À l'Est, Daenerys Targaryen, accompagnée de ses trois dragons et de son armée d’Immaculés, s’apprête à libérer la ville de Meereen, qui pourrait lui fournir assez de navires pour gagner Westeros et ainsi réclamer le trône de Fer3."
+                },
+
+                {
+                    "season": 4,
+                    "episode" : 5,
+                    "title": "Premier du nom",
+                    "synopsis": "L'emprise des Lannister sur le trône de Fer est désormais totale, après le massacre des Noces pourpres, qui a vu la mort de nombreux partisans du camp Stark et de fait brisé le soulèvement du Nord, ce qui a pris un tournant décisif dans la guerre des Cinq Rois en faveur des Lannister.Alors que Stannis Baratheon, prétendant au trône de Fer, poursuit la reconstruction de son armée à Peyredragon, un danger imminent arrive du Sud, en la personne d'Oberyn Martell. Ce dernier, arrivé à Port-Réal pour le mariage du roi Joffrey et de sa fiancée Margaery Tyrell, est habité par un désir de vengeance. Lors du mariage du roi Joffrey, ce dernier meurt mystérieusement empoisonné durant le banquet et son oncle Tyrion est accusé de l'avoir assassiné. Le frère cadet de Joffrey, Tommen, accède donc au trône.Au Nord, la Garde de Nuit, affaiblie, semble dépassée par l’avancée de l’armée des Sauvageons de Mance Rayder, elle-même poursuivie par un ennemi plus redoutable : les Marcheurs blancs.À l'Est, Daenerys Targaryen, accompagnée de ses trois dragons et de son armée d’Immaculés, s’apprête à libérer la ville de Meereen, qui pourrait lui fournir assez de navires pour gagner Westeros et ainsi réclamer le trône de Fer3."
+                },
+
+                {
+                    "season": 4,
+                    "episode" : 6,
+                    "title": "Les Lois des dieux et des hommes",
+                    "synopsis": "L'emprise des Lannister sur le trône de Fer est désormais totale, après le massacre des Noces pourpres, qui a vu la mort de nombreux partisans du camp Stark et de fait brisé le soulèvement du Nord, ce qui a pris un tournant décisif dans la guerre des Cinq Rois en faveur des Lannister.Alors que Stannis Baratheon, prétendant au trône de Fer, poursuit la reconstruction de son armée à Peyredragon, un danger imminent arrive du Sud, en la personne d'Oberyn Martell. Ce dernier, arrivé à Port-Réal pour le mariage du roi Joffrey et de sa fiancée Margaery Tyrell, est habité par un désir de vengeance. Lors du mariage du roi Joffrey, ce dernier meurt mystérieusement empoisonné durant le banquet et son oncle Tyrion est accusé de l'avoir assassiné. Le frère cadet de Joffrey, Tommen, accède donc au trône.Au Nord, la Garde de Nuit, affaiblie, semble dépassée par l’avancée de l’armée des Sauvageons de Mance Rayder, elle-même poursuivie par un ennemi plus redoutable : les Marcheurs blancs.À l'Est, Daenerys Targaryen, accompagnée de ses trois dragons et de son armée d’Immaculés, s’apprête à libérer la ville de Meereen, qui pourrait lui fournir assez de navires pour gagner Westeros et ainsi réclamer le trône de Fer3."
+                },
+
+                {
+                    "season": 4,
+                    "episode" : 7,
+                    "title": "L'Oiseau moqueur",
+                    "synopsis": "L'emprise des Lannister sur le trône de Fer est désormais totale, après le massacre des Noces pourpres, qui a vu la mort de nombreux partisans du camp Stark et de fait brisé le soulèvement du Nord, ce qui a pris un tournant décisif dans la guerre des Cinq Rois en faveur des Lannister.Alors que Stannis Baratheon, prétendant au trône de Fer, poursuit la reconstruction de son armée à Peyredragon, un danger imminent arrive du Sud, en la personne d'Oberyn Martell. Ce dernier, arrivé à Port-Réal pour le mariage du roi Joffrey et de sa fiancée Margaery Tyrell, est habité par un désir de vengeance. Lors du mariage du roi Joffrey, ce dernier meurt mystérieusement empoisonné durant le banquet et son oncle Tyrion est accusé de l'avoir assassiné. Le frère cadet de Joffrey, Tommen, accède donc au trône.Au Nord, la Garde de Nuit, affaiblie, semble dépassée par l’avancée de l’armée des Sauvageons de Mance Rayder, elle-même poursuivie par un ennemi plus redoutable : les Marcheurs blancs.À l'Est, Daenerys Targaryen, accompagnée de ses trois dragons et de son armée d’Immaculés, s’apprête à libérer la ville de Meereen, qui pourrait lui fournir assez de navires pour gagner Westeros et ainsi réclamer le trône de Fer3."
+                },
+
+                {
+                    "season": 4,
+                    "episode" : 8,
+                    "title": "La Montagne et la Vipère",
+                    "synopsis": "L'emprise des Lannister sur le trône de Fer est désormais totale, après le massacre des Noces pourpres, qui a vu la mort de nombreux partisans du camp Stark et de fait brisé le soulèvement du Nord, ce qui a pris un tournant décisif dans la guerre des Cinq Rois en faveur des Lannister.Alors que Stannis Baratheon, prétendant au trône de Fer, poursuit la reconstruction de son armée à Peyredragon, un danger imminent arrive du Sud, en la personne d'Oberyn Martell. Ce dernier, arrivé à Port-Réal pour le mariage du roi Joffrey et de sa fiancée Margaery Tyrell, est habité par un désir de vengeance. Lors du mariage du roi Joffrey, ce dernier meurt mystérieusement empoisonné durant le banquet et son oncle Tyrion est accusé de l'avoir assassiné. Le frère cadet de Joffrey, Tommen, accède donc au trône.Au Nord, la Garde de Nuit, affaiblie, semble dépassée par l’avancée de l’armée des Sauvageons de Mance Rayder, elle-même poursuivie par un ennemi plus redoutable : les Marcheurs blancs.À l'Est, Daenerys Targaryen, accompagnée de ses trois dragons et de son armée d’Immaculés, s’apprête à libérer la ville de Meereen, qui pourrait lui fournir assez de navires pour gagner Westeros et ainsi réclamer le trône de Fer3."
+                },
+
+                {
+                    "season": 4,
+                    "episode" : 9,
+                    "title": "Les Veilleurs au rempart",
+                    "synopsis": "L'emprise des Lannister sur le trône de Fer est désormais totale, après le massacre des Noces pourpres, qui a vu la mort de nombreux partisans du camp Stark et de fait brisé le soulèvement du Nord, ce qui a pris un tournant décisif dans la guerre des Cinq Rois en faveur des Lannister.Alors que Stannis Baratheon, prétendant au trône de Fer, poursuit la reconstruction de son armée à Peyredragon, un danger imminent arrive du Sud, en la personne d'Oberyn Martell. Ce dernier, arrivé à Port-Réal pour le mariage du roi Joffrey et de sa fiancée Margaery Tyrell, est habité par un désir de vengeance. Lors du mariage du roi Joffrey, ce dernier meurt mystérieusement empoisonné durant le banquet et son oncle Tyrion est accusé de l'avoir assassiné. Le frère cadet de Joffrey, Tommen, accède donc au trône.Au Nord, la Garde de Nuit, affaiblie, semble dépassée par l’avancée de l’armée des Sauvageons de Mance Rayder, elle-même poursuivie par un ennemi plus redoutable : les Marcheurs blancs.À l'Est, Daenerys Targaryen, accompagnée de ses trois dragons et de son armée d’Immaculés, s’apprête à libérer la ville de Meereen, qui pourrait lui fournir assez de navires pour gagner Westeros et ainsi réclamer le trône de Fer3."
+                },
+
+                {
+                    "season": 4,
+                    "episode" : 10,
+                    "title": "Les Enfants",
+                    "synopsis": "L'emprise des Lannister sur le trône de Fer est désormais totale, après le massacre des Noces pourpres, qui a vu la mort de nombreux partisans du camp Stark et de fait brisé le soulèvement du Nord, ce qui a pris un tournant décisif dans la guerre des Cinq Rois en faveur des Lannister.Alors que Stannis Baratheon, prétendant au trône de Fer, poursuit la reconstruction de son armée à Peyredragon, un danger imminent arrive du Sud, en la personne d'Oberyn Martell. Ce dernier, arrivé à Port-Réal pour le mariage du roi Joffrey et de sa fiancée Margaery Tyrell, est habité par un désir de vengeance. Lors du mariage du roi Joffrey, ce dernier meurt mystérieusement empoisonné durant le banquet et son oncle Tyrion est accusé de l'avoir assassiné. Le frère cadet de Joffrey, Tommen, accède donc au trône.Au Nord, la Garde de Nuit, affaiblie, semble dépassée par l’avancée de l’armée des Sauvageons de Mance Rayder, elle-même poursuivie par un ennemi plus redoutable : les Marcheurs blancs.À l'Est, Daenerys Targaryen, accompagnée de ses trois dragons et de son armée d’Immaculés, s’apprête à libérer la ville de Meereen, qui pourrait lui fournir assez de navires pour gagner Westeros et ainsi réclamer le trône de Fer3."
+                },
+
+                ];
+            });
+
+
+        </script>
+
+
+
+    </body>
+</html>

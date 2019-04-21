@@ -1,0 +1,145 @@
+@font-face
+{
+    font-family: "got";
+    src: url("ressources/Game\ of\ Thrones.ttf");
+}
+
+body 
+{
+    
+}
+header:first-child 
+{  
+    color: #fff;   
+}
+header h1 
+{
+    font-family: "got";
+    font-size: 3em;
+    color: rgb(54, 41, 29);
+}
+header p 
+{
+    font-style: italic;
+    font-family: Arial, Helvetica, sans-serif; 
+    position: relative;
+    bottom: 10px;
+    text-align: right;
+ 
+}
+ 
+#wallpaper
+{
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: relative;
+    background: url("ressources/Game-of-Thrones-Season-1.jpg");
+    background-size: cover;
+    opacity: 0.6;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+}
+.author
+{
+    width: 128px;
+    height: 128px;
+    border-radius: 100%;
+    float: right;
+} 
+.icon_search
+{
+    width: 32px;
+    height: 32px;
+    color: #fff;
+}
+#icon_return
+{
+    width: 32px;
+    height: 32px;
+    transform: rotate(180deg);
+    visibility: hidden;
+}
+ 
+.list_menu
+{
+    list-style: none;
+}
+
+.select_case
+{
+    background-color: #444;
+    padding: 10px;
+    outline: none;
+    border: none;
+}
+.select_case:first-child
+{
+    color: #fff;
+    outline: none;
+    border: none;
+    text-transform: uppercase;
+}
+.input_search
+{
+    position: relative;
+    bottom: 10px;
+    padding: 10px;
+    border: solid;
+    background-color: #444;
+    color: #fff;
+    border: none;
+    outline: none;
+    visibility: hidden;
+}
+.menu_navigation
+{
+    background-color: #222;
+    border-radius: 20px;
+}
+
+.container 
+{
+    height: 600px;
+    width: 800px;
+    margin: auto auto;
+    display: grid;
+    grid-template-rows: 200px 200px 200px;
+    grid-template-columns: 200px 200px 200px 200px 200px; 
+    
+}
+
+.item 
+{
+    border: 1px solid #221fb3;
+    color: #fff;
+    font-weight: bolder;
+    padding: 10px;
+    margin: 5px;
+    background-image: url("ressources/miniature.jpg");
+    background-size: cover;
+}
+
+@media(max-width:1200px)
+{
+    .container
+    {
+        grid-template-rows: 200px;
+        grid-template-columns: 100%; 
+    }
+    .item 
+    {
+        background-image: url("ressources/game-of-thrones-logo-game-of-thrones-legacy-delivers-the-ultimate-fan-experience-a-trip.jpg");
+    }
+}
+
+ 
+.item:hover
+{
+    opacity: 0.8;
+}
+ 
